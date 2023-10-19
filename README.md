@@ -1,54 +1,23 @@
-## GitHub-Seite der Veranstaltung SE-1 (Prof. Alda)
+• Wie kann diese Kommunikationsverbindung nun dennoch mit Hilfe einer zusätzlichen Klasse, welche die dazu notwendige Objekt-Erzeugung übernimmt, aufgebaut werden? In welchem Package sollte diese zusätzliche Klasse liegen? Bitte beachten Sie dabei auch die Hinweise bzw. Anforderungen aus den Kommentaren der Klassen, Methoden und des Interfaces.
 
-Auf dieser GitHub-Seite finden sie die Source-Codes aus den Übungen sowie Demo-Codes aus den Vorlesungen. Sie finden hier zudem einige nützliche Links für die Übungen.
-Die Seite ist noch im Aufbau und wird kontinuierlich überarbeitet.
+Die factory Klasse sollte sich im control package am besten befinden, und eine methode beinhalten die ein Objekt der Klasse GermanTranslator erstellt
 
-(Hinweis: diese Seite ist im Aufbau)
+• Welches Entwurfsmuster (engl.: design pattern) könnte für die Problematik der Objekt-Erzeugung verwendet werden? Was ist der software-technische Nutzen bei der Verwendung des Entwurfsmusters? Gratistipp: Hinweise für das korrekte Pattern finden sie bei unten angegeben Video-Tutorien ;-)
 
-### Hilfreiche Video-Tutorien:
+Das Factory design pattern wird verwendet
 
-Hinweis: Diese Videos basieren auf einer etwas älteren Version von IntelliJ. Die Darstellung einzelner Fenster kann sich ggf. geändert haben. Die Funktionen sollten aber prinzipiell vorhanden sein.
+• Wie muss man den Source Code des Interface ggf. anpassen, um mögliche auftretende Kompilierfehler zu beseitigen?
 
-[Teil 1: Installation IntelliJ und Entwicklung eines Java-Projekts mit JUnit5](https://www.youtube.com/watch?v=TNtRpkdW64s )
+unter umständen kann man die sichtbarkeit der Methoden anpassen, falls es nötig sein sollte
 
-[Teil 2: Clone eines GitHub-Repository mit IntelliJ](https://www.youtube.com/watch?v=5nr4c3pwu3g)
+• Was ist der Vorteil einer separaten Test-Klasse?
 
-[Teil 3: Push von Source Code auf ein GitHub-Repository mit IntelliJ](https://www.youtube.com/watch?v=PbGiYUR9q0A)
+Eine Seperate Testklasse erlaubt unabhängig von Hautpcode zu agieren, und ist im sinne des Blackbox Testing um ein System von außen zu beurteilen.
 
-[Teil 4: Pull von Änderungen bzw. von neuen Codes aus einem GitHub-Repository ](https://www.youtube.com/watch?v=I4L0k33TNQ4)
+• Was ist bei einem Blackbox-Test der Sinn von Äquivalenzklassen?
 
+Die Aquivalenzklassen dienen um eine ausrechende Testabdeckung zu erreichen. Durch logische einteilung von Test variablen wird eine representative Auswahl erstellt.
 
+• Warum ist ein Blackbox-Test mit JUnit auf der Klasse Client nicht unmittelbar durchführbar?
 
-### Links zu hilfreichen Tools:
-
-[Draw.io](https://app.diagrams.net/) <br>
-Schlankes browser-basiertes Tool, keine Installation auf ihrem Rechner notwendig! Abspeicherung der Dokumente in verschiedenen Formen möglich (Lokal, Cloud). Läuft nativ ohne Plugin auf allen gängigen Browsern.
-
-[UMLet](http://www.umlet.com/) <br>
-Gutes und übersichtliches Tool zur Modellierung, installierbar für Windows / MAC / Linux.
-Unterstützt keine Sequenzdiagramme (Anpassung möglich). Bedienung etwas gewöhnungsbedürftig zu Beginn, dann aber sehr effektiv ;-)
-
-[Mermaid](https://mermaid.js.org/syntax/classDiagram.html) <br>
-Mermaid ist ein DSL-basierter Editor, der eine Vielzahl von Modellen und Diagrammtypen unterstützt. Anstelle eines grafischen Editors entwickelt man in Mermaid die Modelle mit Hilfe einer Sprache (einer sogenannten Domain Specific Language ([DSL](https://martinfowler.com/dsl.html))). Vorteil ist auch eine direkte [Integration](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/) der Modelle in eine readme.md.
-
-
-
-### IntelliJ als IDE
-In den Vorlesungen SE-1 (BWI, BCSP) und SE-2 (BWI) wird die Verwendung der Entwicklungsumgebung IntelliJ empfohlen, die IDE hat sich in den letzten Jahren als Standard etabliert. Hier empfiehlt sich der Download der Ultimate-Version, die als registrierter Student kostenlos bezogen werden kann! Unübertroffen ist die Auto Completion Funktion, welche IntelliJ recht populär und beliebt gemacht hat. In den Übungen wird die IntelliJ für Demo-Zwecke verwendet. Auch die Verwendung eines GitHub-Repository ist hier sehr intuitiv realisiert worden.
-<br>
-[Download von IntelliJ](https://www.jetbrains.com/idea/)
-
-### Links zu Markdown
-
-Sie möchten eine eigene readme.md (also eine wie diese Seite) implementieren? Hier ein hilfreicher Link eines einfachen Guides::
-<br>
-[Markdown Guide](https://www.markdownguide.org/basic-syntax/)
-
-Das Tutorium von GitHub ist recht umfangreich, aber auch hilfreich für komplexere Seiten: <br>
-[Guide von GitHub](https://docs.github.com/de/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
-
-
-
-
-
-
+Um das Prinzip von Blackbox Tests zu erhalten muss man unabhängig von der Internen Implementation Testen und dementsprechend erfogt der Test außerhalb der Klasse.
