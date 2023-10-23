@@ -7,19 +7,16 @@ public class Container {
 
     List<Member> memberList = new ArrayList<Member>();
 
-    public void addMember(Member concretMember) {
-        try {
-            for (Member member : memberList) {
-                if (member.getID() == concretMember.getID()) {
-                    throw new ContainerException(String.format("Das Member-Objekt mit der ID %s ist bereits vorhanden!",
-                            concretMember.getID()));
-                }
-            }
-            memberList.add(concretMember);
+    public void addMember(Member concretMember) throws ContainerException {
 
-        } catch (ContainerException e) {
-            System.out.println(e);
+        for (Member member : memberList) {
+            if (member.getID() == concretMember.getID()) {
+                throw new ContainerException(String.format("Das Member-Objekt mit der ID %s ist bereits vorhanden!",
+                        concretMember.getID()));
+            }
         }
+        memberList.add(concretMember);
+
     }
 
     public String deleteMember(int id) {
