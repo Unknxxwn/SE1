@@ -32,7 +32,7 @@ public class ContainerTest {
         ConcreteMember conMember1 = new ConcreteMember(1);
         // act
         container.addMember(conMember);
-        // arrange
+        // assert
         assertThrows(ContainerException.class, () -> {
             container.addMember(conMember1);
         });
