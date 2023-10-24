@@ -2,7 +2,6 @@ package org.hbrs.se1.ws23.uebung2.testing;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.hbrs.se1.ws23.uebung2.ConcreteMember;
 import org.hbrs.se1.ws23.uebung2.Container;
@@ -33,12 +32,10 @@ public class ContainerTest {
         ConcreteMember conMember1 = new ConcreteMember(1);
         // act
         container.addMember(conMember);
-
         // arrange
-        // cant get the asserthrows to work:
-        // The method assertThrows(Class<ContainerException>, ThrowingRunnable) is
-        // ambiguous for the type ContainerTest
-        // assertThrows(ContainerException.class, container.addMember(conMember1));
+        assertThrows(ContainerException.class, () -> {
+            container.addMember(conMember1);
+        });
     }
 
     @Test
@@ -122,7 +119,7 @@ public class ContainerTest {
     public void aPositiveTestWith0_size() {
         // arrange
         Container container = new Container();
-        ConcreteMember conMember = new ConcreteMember(1);
+
         // act
         // assert
         assertEquals(0, container.size());
