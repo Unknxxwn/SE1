@@ -29,12 +29,6 @@ public class Container {
         return String.format("Es gibt kein Member-Objekt mit der ID %s", id);
     }
 
-    public void dump() {
-        for (Member member : memberList) {
-            System.out.println(member.toString());
-        }
-    }
-
     public Integer size() {
         return memberList.size();
     }
