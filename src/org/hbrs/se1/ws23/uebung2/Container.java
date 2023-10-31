@@ -32,4 +32,12 @@ public class Container {
     public Integer size() {
         return memberList.size();
     }
+
+    public void store() throws Exception {
+
+    }
+
+    public void load() throws Exception {
+
+    }
 }
