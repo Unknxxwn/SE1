@@ -40,4 +40,17 @@ public class Container {
     public void load() throws Exception {
 
     }
+
+    // Singleton Pattern
+    private static Container instance;
+
+    private Container() {
+    }
+
+    public static Container getInstance() {
+        if (instance == null) {
+            instance = new Container();
+        }
+        return instance;
+    }
 }

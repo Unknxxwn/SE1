@@ -12,11 +12,10 @@ import org.junit.jupiter.api.Test;
  * ContainerTest
  */
 public class ContainerTest {
-
     @Test
     public void aPositiveTest_addMember_doesItaddaMember() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         // act
         container.addMember(conMember);
@@ -27,7 +26,7 @@ public class ContainerTest {
     @Test
     public void aNegativeTest_addMember_doesIThrow() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         ConcreteMember conMember1 = new ConcreteMember(1);
         // act
@@ -41,7 +40,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTest_deleteMember() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         ConcreteMember conMember1 = new ConcreteMember(2);
         // act
@@ -55,7 +54,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTest_2deleteMember() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         ConcreteMember conMember1 = new ConcreteMember(2);
         // act
@@ -70,7 +69,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTestWithEmptyContainer_deleteMember() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         container.addMember(conMember);
         // act
@@ -83,7 +82,7 @@ public class ContainerTest {
     @Test
     public void aNegativeTest_deleteMember() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         container.addMember(conMember);
         // act
@@ -96,7 +95,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTest_dump() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         container.addMember(conMember);
         // act
@@ -107,7 +106,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTest_size() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         container.addMember(conMember);
         // act
@@ -118,7 +117,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTestWith0_size() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
 
         // act
         // assert
@@ -128,7 +127,7 @@ public class ContainerTest {
     @Test
     public void aPositiveTestWithAddDeleteMember_size() {
         // arrange
-        Container container = new Container();
+        Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(1);
         // act
         container.addMember(conMember);
