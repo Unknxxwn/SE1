@@ -3,8 +3,10 @@ package org.hbrs.se1.ws23.uebung2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Container {
+import org.hbrs.se1.ws23.uebung3.persistence.PersistenceStrategyStream;
 
+public class Container {
+    PersistenceStrategyStream<Member> pStrategyStream = new PersistenceStrategyStream<>();
     List<Member> memberList = new ArrayList<Member>();
 
     public void addMember(Member concretMember) throws ContainerException {
@@ -34,11 +36,11 @@ public class Container {
     }
 
     public void store() throws Exception {
-
+        pStrategyStream.save(memberList);
     }
 
     public void load() throws Exception {
-
+        pStrategyStream.load();
     }
 
     // Singleton Pattern
