@@ -43,6 +43,10 @@ public class Container {
         pStrategyStream.load();
     }
 
+    public List<Member> getCurrentlist() {
+        return memberList;
+    }
+
     // Singleton Pattern
     private static Container instance;
 
