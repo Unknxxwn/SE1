@@ -7,7 +7,7 @@ import org.hbrs.se1.ws23.uebung3.persistence.PersistenceStrategyStream;
 
 public class Container {
     PersistenceStrategyStream<Member> pStrategyStream = new PersistenceStrategyStream<>();
-    List<Member> memberList = new ArrayList<Member>();
+    List<Member> memberList = new ArrayList<>();
 
     public void addMember(Member concretMember) throws ContainerException {
 

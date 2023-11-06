@@ -13,7 +13,7 @@ import org.hbrs.se1.ws23.uebung3.persistence.PersistenceException.ExceptionType;
 public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     MemberView memberView = new MemberView();
     // URL of file, in which the objects are stored
-    private String location = "C:\\Users\\coooc\\Desktop\\Testing\\MemberList.txt";
+    private String location = "C://Users//coooc//Desktop//Testing//MemberList.txt";
     // Stream objects
     private FileInputStream fileIn = null;
     private FileOutputStream fileOut = null;
@@ -104,7 +104,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
         }
 
         if (obj instanceof List<?>) {
-            List newListe = (List) obj;
+            List<E> newListe = (List<E>) obj;
             return newListe;
         }
 
