@@ -87,9 +87,6 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
             if (!file.exists()) {
                 file.createNewFile();
             }
-            if (file.exists()) {
-                System.out.println("This File already exists");
-            }
             objectOut.writeObject(member);
         } catch (IOException exception) {
             exception.printStackTrace();

@@ -19,5 +19,6 @@ public class Client {
         memberView.dump(container.getCurrentlist());
         System.out.println("container.store()");
         container.store();
+        // container.load();
     }
 }
