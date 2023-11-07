@@ -1,6 +1,8 @@
 package org.hbrs.se1.ws23.uebung2;
 
-public class ConcreteMember implements Member {
+import java.io.Serializable;
+
+public class ConcreteMember implements Member, Serializable {
     // Attribute
     private int memberId;
 
@@ -16,6 +18,6 @@ public class ConcreteMember implements Member {
 
     @Override
     public String toString() {
-        return String.format("Member (ID %s)",memberId);
+        return String.format("Member (ID %s)", memberId);
     }
 }

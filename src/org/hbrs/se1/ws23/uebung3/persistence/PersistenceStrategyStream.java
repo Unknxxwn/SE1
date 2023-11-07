@@ -1,19 +1,22 @@
 package org.hbrs.se1.ws23.uebung3.persistence;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import org.hbrs.se1.ws23.uebung2.MemberView;
 import org.hbrs.se1.ws23.uebung3.persistence.PersistenceException.ExceptionType;
 
-public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
+public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Serializable {
     MemberView memberView = new MemberView();
     // URL of file, in which the objects are stored
     private String location = "C://Users//coooc//Desktop//Testing//MemberList.txt";
+    File file = new File(location);
     // Stream objects
     private FileInputStream fileIn = null;
     private FileOutputStream fileOut = null;
@@ -38,12 +41,12 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
      */
     public void openConnection() throws PersistenceException {
         try {
-            fileIn = new FileInputStream(location);
             fileOut = new FileOutputStream(location);
-            objectIn = new ObjectInputStream(fileIn);
             objectOut = new ObjectOutputStream(fileOut);
-
+            fileIn = new FileInputStream(location);
+            objectIn = new ObjectInputStream(fileIn);
         } catch (IOException exception) {
+            exception.printStackTrace();
             throw new PersistenceException(ExceptionType.IOException, ":(");
         }
 
@@ -56,16 +59,20 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public void closeConnection() throws PersistenceException {
         try {
 
-            fileIn.close();
-            //
-            fileOut.flush();
-            fileOut.close();
-            //
-            objectIn.close();
-            //
-            objectOut.flush();
-            objectOut.close();
-        } catch (Exception exception) {
+            if (fileOut != null) {
+                fileOut.flush();
+                fileOut.close();
+            }
+            if (objectOut != null) {
+                objectOut.close();
+            }
+            if (fileIn != null) {
+                fileIn.close();
+            }
+            if (objectIn != null) {
+                objectIn.close();
+            }
+        } catch (IOException exception) {
             throw new PersistenceException(ExceptionType.IOException, ":(");
         }
     }
@@ -77,8 +84,15 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public void save(List<E> member) throws PersistenceException {
         openConnection();
         try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            if (file.exists()) {
+                System.out.println("This File already exists");
+            }
             objectOut.writeObject(member);
-        } catch (Exception exception) {
+        } catch (IOException exception) {
+            exception.printStackTrace();
             throw new PersistenceException(ExceptionType.IOException, ":(");
         }
         closeConnection();
@@ -94,21 +108,19 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public List<E> load() throws PersistenceException {
 
         openConnection();
-
         Object obj;
         try {
             obj = objectIn.readObject();
-
+            if (obj instanceof List<?>) {
+                List<E> newListe = (List<E>) obj;
+                return newListe;
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new PersistenceException(ExceptionType.IOException, ":(");
+        } finally {
+            closeConnection();
         }
-
-        if (obj instanceof List<?>) {
-            List<E> newListe = (List<E>) obj;
-            return newListe;
-        }
-
-        closeConnection();
         return null;
     }
 }

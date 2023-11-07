@@ -26,6 +26,6 @@ public class PersistenceException extends Exception {
      */
     public enum ExceptionType {
         ImplementationNotAvailable, ConnectionNotAvailable, NoStrategyIsSet, IOException, FileNotFoundException,
-        ClassNotFoundException
+        ClassNotFoundException, NoSuchFieldException
     }
 }
