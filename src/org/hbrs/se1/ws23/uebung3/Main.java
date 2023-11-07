@@ -8,8 +8,5 @@ import org.hbrs.se1.ws23.uebung3.persistence.PersistenceStrategyStream;
 public class Main {
 
     public static void main(String[] args) throws PersistenceException {
-        PersistenceStrategyStream<Member> persistence = new PersistenceStrategyStream<>();
-        persistence.openConnection();
-        persistence.closeConnection();
     }
 }

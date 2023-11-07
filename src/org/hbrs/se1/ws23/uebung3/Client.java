@@ -7,7 +7,6 @@ import org.hbrs.se1.ws23.uebung2.MemberView;
 public class Client {
 
     public static void main(String[] args) throws Exception {
-        Main main = new Main();
         MemberView memberView = new MemberView();
         Container container = Container.getInstance();
         ConcreteMember conMember = new ConcreteMember(0);
@@ -16,8 +15,9 @@ public class Client {
         container.addMember(conMember);
         container.addMember(conMember1);
         container.addMember(conMember2);
-        container.store();
+        System.out.println("to see if list is not empty :)");
         memberView.dump(container.getCurrentlist());
-        Main.main(args);
+        System.out.println("container.store()");
+        container.store();
     }
 }
