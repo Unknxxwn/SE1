@@ -2,6 +2,7 @@ package org.hbrs.se1.ws23.uebung3.persistence;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -40,7 +41,12 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
      * and save.
      */
     public void openConnection() throws PersistenceException {
-        System.out.println("couldnt be implemented due to problems");
+        System.out.println("Only for testing");
+        try {
+            fileOut = new FileOutputStream(location);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
