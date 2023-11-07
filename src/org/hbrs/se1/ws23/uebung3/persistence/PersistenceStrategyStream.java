@@ -40,16 +40,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
      * and save.
      */
     public void openConnection() throws PersistenceException {
-        try {
-            fileOut = new FileOutputStream(location);
-            objectOut = new ObjectOutputStream(fileOut);
-            fileIn = new FileInputStream(location);
-            objectIn = new ObjectInputStream(fileIn);
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            throw new PersistenceException(ExceptionType.IOException, ":(");
-        }
-
+        System.out.println("couldnt be implemented due to problems");
     }
 
     @Override
@@ -82,8 +73,10 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
      * Method for saving a list of Member-objects to a disk (HDD)
      */
     public void save(List<E> member) throws PersistenceException {
-        openConnection();
+
         try {
+            fileOut = new FileOutputStream(location);
+            objectOut = new ObjectOutputStream(fileOut);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -101,23 +94,19 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
      * Some coding examples come for free :-)
      * Take also a look at the import statements above ;-!
      */
+
     @SuppressWarnings("unchecked")
     public List<E> load() throws PersistenceException {
-
-        openConnection();
-        Object obj;
         try {
-            obj = objectIn.readObject();
-            if (obj instanceof List<?>) {
-                List<E> newListe = (List<E>) obj;
-                return newListe;
-            }
+            fileIn = new FileInputStream(location);
+            objectIn = new ObjectInputStream(fileIn);
+            return (List<E>) objectIn.readObject();
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistenceException(ExceptionType.IOException, ":(");
         } finally {
             closeConnection();
         }
-        return null;
+        // return null;
     }
 }

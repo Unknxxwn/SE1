@@ -40,7 +40,7 @@ public class Container {
     }
 
     public void load() throws Exception {
-        pStrategyStream.load();
+        memberList = pStrategyStream.load();
     }
 
     public List<Member> getCurrentlist() {
