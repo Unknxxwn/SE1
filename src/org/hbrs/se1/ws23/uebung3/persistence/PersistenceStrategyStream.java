@@ -70,7 +70,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
                 objectIn.close();
             }
         } catch (IOException exception) {
-            throw new PersistenceException(ExceptionType.IOException, ":(");
+            throw new PersistenceException(ExceptionType.IOException, "a Problem occured while closing the Streams");
         }
     }
 
@@ -89,7 +89,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
             objectOut.writeObject(member);
         } catch (IOException exception) {
             exception.printStackTrace();
-            throw new PersistenceException(ExceptionType.IOException, ":(");
+            throw new PersistenceException(ExceptionType.IOException, "a Problem ocurred while saving");
         }
         closeConnection();
     }
@@ -109,7 +109,7 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E>, Ser
             return (List<E>) objectIn.readObject();
         } catch (Exception e) {
             e.printStackTrace();
-            throw new PersistenceException(ExceptionType.IOException, ":(");
+            throw new PersistenceException(ExceptionType.IOException, "a Problem occured while loading");
         } finally {
             closeConnection();
         }
