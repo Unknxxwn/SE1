@@ -23,23 +23,23 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     @Override
     /**
      * Used only for openining a connection for storing objects
-     * Exception occurs in some SDKs, when both are created (TODO!)
+     * Exception occurs in some SDKs, when both are created
      * Workaround: open the Streams in the load method
      */
     public void openConnection() throws PersistenceException {
         try {
-            fos = new FileOutputStream( LOCATION );
-            fis = new FileInputStream( LOCATION );
+            fos = new FileOutputStream(LOCATION);
+            fis = new FileInputStream(LOCATION);
         } catch (FileNotFoundException e) {
-            throw new PersistenceException( PersistenceException.ExceptionType.ConnectionNotAvailable
-            , "Error in opening the connection, File could not be found");
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable,
+                    "Error in opening the connection, File could not be found");
         }
         try {
-            oos = new ObjectOutputStream( fos );
-            ois = new ObjectInputStream(  fis  );
+            oos = new ObjectOutputStream(fos);
+            ois = new ObjectInputStream(fis);
         } catch (IOException e) {
-            throw new PersistenceException( PersistenceException.ExceptionType.ConnectionNotAvailable
-                    , "Error in opening the connection, problems with the stream");
+            throw new PersistenceException(PersistenceException.ExceptionType.ConnectionNotAvailable,
+                    "Error in opening the connection, problems with the stream");
         }
     }
 
@@ -47,15 +47,20 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public void closeConnection() throws PersistenceException {
         try {
             // Closing the outputstreams for storing
-            if (oos != null) oos.close();
-            if (fos != null) fos.close();
+            if (oos != null)
+                oos.close();
+            if (fos != null)
+                fos.close();
 
             // Closing the inputstreams for loading
-            if (ois != null) ois.close();
-            if (fis != null) fis.close();
-        } catch( IOException e ) {
+            if (ois != null)
+                ois.close();
+            if (fis != null)
+                fis.close();
+        } catch (IOException e) {
             // Lazy solution: catching the exception of any closing activity ;-)
-            throw new PersistenceException(PersistenceException.ExceptionType.ClosingFailure , "error while closing connections");
+            throw new PersistenceException(PersistenceException.ExceptionType.ClosingFailure,
+                    "error while closing connections");
         }
     }
 
@@ -66,15 +71,15 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
     public void save(List<E> list) throws PersistenceException {
         // Write the objects to stream
         try {
-            System.out.println( "LOG: Es wurden " +  list.size() + " Member-Objekte wurden erfolgreich gespeichert!");
-            oos.writeObject( list );
-        }
-        catch (IOException e) {
+            System.out.println("LOG: Es wurden " + list.size() + " Member-Objekte wurden erfolgreich gespeichert!");
+            oos.writeObject(list);
+        } catch (IOException e) {
             // Koennte man ausgeben für interne Debugs: e.printStackTrace();
             // Chain of Responsibility: Hochtragen der Exception in Richtung Ausgabe (UI)
             // Uebergabe in ein lesbares Format fuer den Benutzer
             e.printStackTrace();
-            throw new PersistenceException( PersistenceException.ExceptionType.SaveFailure , "Fehler beim Speichern der Datei!");
+            throw new PersistenceException(PersistenceException.ExceptionType.SaveFailure,
+                    "Fehler beim Speichern der Datei!");
         }
     }
 
@@ -101,16 +106,17 @@ public class PersistenceStrategyStream<E> implements PersistenceStrategy<E> {
             }
             System.out.println("LOG: Es wurden " + list.size() + " User Stories erfolgreich reingeladen!");
             return list;
-        }
-        catch (IOException e) {
-            // Sup-Optimal, da Exeception in Form eines unlesbaren Stake-Traces ausgegeben wird
+        } catch (IOException e) {
+            // Sup-Optimal, da Exeception in Form eines unlesbaren Stake-Traces ausgegeben
+            // wird
             e.printStackTrace();
-            throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei!");
-        }
-        catch (ClassNotFoundException e) {
+            throw new PersistenceException(PersistenceException.ExceptionType.LoadFailure,
+                    "Fehler beim Laden der Datei!");
+        } catch (ClassNotFoundException e) {
             // Chain of Responsbility erfuellt, durch Throw der Exceotion kann UI
             // benachrichtigt werden!
-            throw new PersistenceException( PersistenceException.ExceptionType.LoadFailure , "Fehler beim Laden der Datei! Class not found!");
+            throw new PersistenceException(PersistenceException.ExceptionType.LoadFailure,
+                    "Fehler beim Laden der Datei! Class not found!");
         }
     }
 }
