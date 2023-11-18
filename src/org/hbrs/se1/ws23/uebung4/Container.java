@@ -2,7 +2,9 @@ package org.hbrs.se1.ws23.uebung4;
 
 import org.hbrs.se1.ws23.uebung2.ContainerException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hbrs.se1.ws23.uebung3.persistence.PersistenceStrategyStream;
 
@@ -76,6 +78,31 @@ public class Container {
 
     public List<UserStory> getCurrentlist() {
         return userStoryList;
+    }
+
+    public void dump() {
+        List<UserStory> userstoryList2 = userStoryList.stream()
+                .sorted(Comparator.comparingDouble(UserStory::getPrio))
+                .collect(Collectors.toList());
+        UserStoryView.dump(userstoryList2);
+
+    }
+
+    /**
+     * this method searches for UserStories with Project as search term, ans returns
+     * a list of results
+     * 
+     * @param project
+     * @return
+     */
+    public List<UserStory> getUserStories(String project) {
+        List<UserStory> resultList = new ArrayList<UserStory>();
+        for (UserStory userStory : userStoryList) {
+            if (userStory.getProjekt().equals(project)) {
+                resultList.add(userStory);
+            }
+        }
+        return resultList;
     }
 
     /*

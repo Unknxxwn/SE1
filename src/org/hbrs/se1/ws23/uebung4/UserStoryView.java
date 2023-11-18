@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UserStoryView {
 
-    public void dump(List<UserStory> userStoryList) {
+    public static void dump(List<UserStory> userStoryList) {
         for (UserStory userStory : userStoryList) {
             System.out.println(userStory.toString());
         }

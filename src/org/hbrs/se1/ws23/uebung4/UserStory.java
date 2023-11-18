@@ -1,6 +1,8 @@
 package org.hbrs.se1.ws23.uebung4;
 
-public class UserStory {
+import java.io.Serializable;
+
+public class UserStory implements Serializable {
     // Bestandteile der UserStory
     private String projekt;
     private String titel;
@@ -16,20 +18,32 @@ public class UserStory {
     /*
      * Konstruktor für das UserStory-Objekt
      */
-    public UserStory(String projekt, String titel, String userstory, int id, int aufwand, int mehrwert, int strafe,
+    public UserStory(
+            String projekt,
+            String titel,
+            String userStory,
+            int id,
+            int aufwand,
+            int mehrwert,
+            int strafe,
             int risiko,
-            double prio,
             String epic) {
-        this.titel = titel;
-        this.userstory = userstory;
         this.projekt = projekt;
+        this.titel = titel;
+        this.userstory = userStory;
         this.id = id;
         this.mehrwert = mehrwert;
         this.strafe = strafe;
         this.risiko = risiko;
-        this.prio = prio;
         this.epic = epic;
         this.aufwand = aufwand;
+        this.prio = (mehrwert + strafe) / (aufwand + risiko);
+    }
+
+    public String toString() {
+        return "project:" + projekt + "\n" + "title:" + titel + "\n" + "userstory:" + userstory + "\n" + "ID:" + id
+                + "\n" + "value:" + mehrwert + "\n" + "penalty:" + strafe + "\n" + "risk:" + risiko
+                + "\n" + "priority:" + prio + "\n" + "epic:" + epic + "\n" + "effort:" + aufwand + "\n";
     }
 
     // getter Methoden
@@ -114,4 +128,5 @@ public class UserStory {
     public void setAufwand(int aufwand) {
         this.aufwand = aufwand;
     }
+
 }
