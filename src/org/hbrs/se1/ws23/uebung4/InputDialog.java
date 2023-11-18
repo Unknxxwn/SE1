@@ -20,9 +20,29 @@ public class InputDialog {
         // Start des Programmes
         System.out.println("UserStory-Tool");
         System.out.print("> ");
-        // eigentlicher loop für die Eingabe in der Konsole
-        while (scanner.hasNext()) {
+        // Switch cases zur Verarbeitung der eingabe von befehlen
 
+        switch (strings[0]) {
+            case "enter":
+
+                break;
+            case "store":
+                break;
+            case "load":
+                break;
+            case "dump":
+                break;
+            case "search":
+                break;
+            case "exit":
+                break;
+            case "help":
+                System.out.println();
+                break;
+            default:
+                System.out.println("command incorrect if you need help type: help to see a list of commands");
+                break;
         }
+        scanner.close();
     }
 }
